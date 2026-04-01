@@ -1,0 +1,29 @@
+Package: vastRai
+Title: AI-Assisted Translation Between Narrative Theories and VAST Models
+Version: 0.1.0
+Authors@R: c(
+    person("Luebber", "Finn", email = "f.luebber2@uni-luebeck.de",
+           role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0003-0893-2120"))
+    )
+Description: Provides tools for translating between narrative theory paragraphs and
+    Visual Argument Structure Tool (VAST) models. Generates structured prompts for
+    large language models to parse narrative text into VAST model specifications
+    (JSON), and converts that JSON into vastR model code. Includes theory
+    underspecification assessment based on the Indicators for Theoretical Rigor
+    checklist.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports:
+    jsonlite,
+    vastR,
+    cli
+Suggests:
+    testthat (>= 3.0.0),
+    knitr,
+    clipr,
+    DiagrammeRsvg,
+    rsvg
+Config/testthat/edition: 3

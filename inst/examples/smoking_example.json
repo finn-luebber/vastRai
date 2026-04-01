@@ -1,0 +1,116 @@
+{
+  "source_text": "Smoking causes tar buildup in the lungs, which in turn causes lung cancer.",
+  "models": {
+    "closest_match": {
+      "title": "Smoking -> Tar -> Lung Cancer (Mediated Causation)",
+      "naming_mode": "separated",
+      "analyst": "LLM (Claude)",
+      "nodes": [
+        {"id": "C1", "type": "concept", "label": "C1"},
+        {"id": "C1_name", "type": "name", "label": "Smoking"},
+        {"id": "C2", "type": "concept", "label": "C2"},
+        {"id": "C2_name", "type": "name", "label": "Tar buildup in the lungs"},
+        {"id": "C3", "type": "concept", "label": "C3"},
+        {"id": "C3_name", "type": "name", "label": "Lung cancer"}
+      ],
+      "edges": [
+        {"id": "n1", "from": "C1", "to": "C1_name", "type": "naming"},
+        {"id": "n2", "from": "C2", "to": "C2_name", "type": "naming"},
+        {"id": "n3", "from": "C3", "to": "C3_name", "type": "naming"},
+        {"id": "c1", "from": "C1", "to": "C2", "type": "causation"},
+        {"id": "c2", "from": "C2", "to": "C3", "type": "causation"}
+      ],
+      "groups": [],
+      "is_statements": [],
+      "ought_statements": []
+    },
+    "distant_compatible": {
+      "title": "Smoking -> Lung Cancer (Direct Cause, Tar as Implication)",
+      "naming_mode": "separated",
+      "analyst": "LLM (Claude)",
+      "nodes": [
+        {"id": "C1", "type": "concept", "label": "C1"},
+        {"id": "C1_name", "type": "name", "label": "Smoking"},
+        {"id": "C2", "type": "concept", "label": "C2"},
+        {"id": "C2_name", "type": "name", "label": "Tar buildup in the lungs"},
+        {"id": "C3", "type": "concept", "label": "C3"},
+        {"id": "C3_name", "type": "name", "label": "Lung cancer"}
+      ],
+      "edges": [
+        {"id": "n1", "from": "C1", "to": "C1_name", "type": "naming"},
+        {"id": "n2", "from": "C2", "to": "C2_name", "type": "naming"},
+        {"id": "n3", "from": "C3", "to": "C3_name", "type": "naming"},
+        {"id": "c1", "from": "C1", "to": "C3", "type": "causation"},
+        {"id": "i1", "from": "C1", "to": "C2", "type": "implication"},
+        {"id": "i2", "from": "C2", "to": "C3", "type": "implication"}
+      ],
+      "groups": [],
+      "is_statements": [],
+      "ought_statements": []
+    }
+  },
+  "translation_notes": {
+    "auxiliary_assumptions": [
+      {
+        "id": "A1",
+        "description": "Tar buildup is a causal mediator vs. a conceptual byproduct",
+        "reason": "The phrase 'which in turn causes' could mean tar buildup is in the causal chain (mediator) or merely a co-occurring implication of smoking that is itself conceptually linked to cancer.",
+        "text_evidence": "which in turn causes",
+        "closest_match_choice": "Tar buildup as causal mediator: C1 ->c-> C2 ->c-> C3",
+        "distant_compatible_choice": "Direct causation C1 ->c-> C3, with tar buildup as conceptual implication of both smoking and cancer",
+        "other_options": ["Tar as a predictive (p) indicator rather than causal mediator"]
+      },
+      {
+        "id": "A2",
+        "description": "All relationships are unidirectional",
+        "reason": "The text implies a temporal sequence (smoking -> tar -> cancer) but does not explicitly rule out feedback effects.",
+        "text_evidence": "causes... which in turn causes",
+        "closest_match_choice": "Unidirectional causation following temporal order",
+        "distant_compatible_choice": "Unidirectional (same choice - text is clear on direction)",
+        "other_options": []
+      }
+    ],
+    "underspecification_points": [
+      {
+        "id": "U1",
+        "description": "No relationship strengths specified",
+        "impact": "Cannot determine the magnitude of any causal effect. Both models leave strength as null.",
+        "text_location": "Entire sentence - no quantification language used."
+      },
+      {
+        "id": "U2",
+        "description": "No scope conditions specified",
+        "impact": "Unclear whether this applies to all smokers, heavy smokers, specific populations, etc.",
+        "text_location": "No scope language present in the text."
+      },
+      {
+        "id": "U3",
+        "description": "No noise/additional influences acknowledged",
+        "impact": "The text does not mention whether other factors also contribute to tar buildup or lung cancer.",
+        "text_location": "Entire sentence - no hedging or qualification language."
+      }
+    ],
+    "model_divergence_summary": "The primary model treats tar buildup as a causal mediator in a chain (Smoking -> Tar -> Cancer). The alternative model treats smoking as a direct cause of lung cancer, with tar buildup reinterpreted as a conceptual implication rather than a causal step. Both readings are compatible with 'which in turn causes', which is ambiguous between temporal mediation and loose sequential narration."
+  },
+  "rigor_assessment": {
+    "description": "Assessment based on T-items from Musfeld et al. Indicators for the Assessment of Theoretical Rigor (v3.0).",
+    "T1_phenomenon": {
+      "rating": "partially_specified",
+      "justification": "The phenomenon (lung cancer occurrence) is implied but not explicitly described as the target of explanation."
+    },
+    "T2_concept_definitions": {
+      "rating": "unspecified",
+      "justification": "None of the three concepts are formally defined. Their meanings are assumed from common usage.",
+      "undefined_concepts": ["Smoking", "Tar buildup in the lungs", "Lung cancer"]
+    },
+    "T3_mechanism": {
+      "rating": "partially_specified",
+      "justification": "A causal chain is asserted but the mechanism by which each step operates is not described."
+    },
+    "T4_scope": {
+      "rating": "unspecified",
+      "justification": "No conditions, populations, or boundary conditions are mentioned."
+    },
+    "overall_assessment": "This sentence is a minimal causal claim with no concept definitions, no mechanism detail, and no scope conditions. The underspecification is reflected in the model divergence: even the basic causal structure (mediation vs. direct effect) cannot be determined from the text alone."
+  }
+}
