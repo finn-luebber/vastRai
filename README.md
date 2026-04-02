@@ -133,6 +133,15 @@ containing:
 
 - **Lightweight reports**: Plain text + PNG files, no heavy dependencies.
 
+## Acknowledgments
+
+The code for this package was developed with substantial assistance
+from Claude (Anthropic). Claude generated the initial package
+architecture, and the majority of the function implementations based on 
+the author's design decisions, specifications, and iterative feedback. 
+The author is responsible for the overall design, all conceptual decisions, 
+testing, and maintenance.
+
 ## References
 
 - Leising, D., Grenke, O., & Cramer, M. (2023). Visual Argument
